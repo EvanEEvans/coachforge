@@ -9,7 +9,7 @@ import {
   Loader2, ListChecks, BarChart3, AlertCircle, Zap, Flag,
   Send, Copy, ChevronDown, ChevronRight, Mic, FileText,
   Sparkles, TrendingUp, Heart, Battery, MessageSquare,
-  RefreshCw, ExternalLink
+  RefreshCw, ExternalLink, BookOpen
 } from "lucide-react";
 import { formatDate, formatDuration, formatTime, getInitials, cn } from "@/lib/utils/constants";
 import type { Session, Client, ActionItem } from "@/lib/supabase/types";
