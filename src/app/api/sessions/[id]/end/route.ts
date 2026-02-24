@@ -120,6 +120,6 @@ export async function POST(
       summary: "Session processing encountered an error. Please contact support.",
     }).eq("id", sessionId);
 
-    return NextResponse.json({ error: "Processing failed" }, { status: 500 });
+    return NextResponse.json({ error: "Processing failed: " + (error instanceof Error ? error.message : String(error)) }, { status: 500 });
   }
 }
