@@ -35,11 +35,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) { router.push("/login"); return; }
 
-      const { data: prof } = await supabase
+      let { data: prof } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", user.id)
         .single();
+
+        // If profile doesnt exist yet (race condition after signup), create it
+        if (!prof) {
+          const { data: newProf } = await supabase
+            .from("profiles")
+            .insert({ id: user.id, email: user.email })
+            .select()
+            .single();
+          prof = newProf;
+        }
 
       if (prof) {
         setProfile(prof);
