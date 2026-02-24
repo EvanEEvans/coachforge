@@ -46,6 +46,8 @@ export default function LiveSessionPage() {
   // Live indicators
   const [keyMoments, setKeyMoments] = useState<string[]>([]);
   const [wordCount, setWordCount] = useState(0);
+  const [showShareLink, setShowShareLink] = useState(true);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   // Load session
   useEffect(() => {
@@ -254,6 +256,25 @@ export default function LiveSessionPage() {
           </button>
         </div>
       </div>
+
+      {/* Client Join Link */}
+      {showShareLink && session?.room_name && (
+        <div className="bg-gradient-to-r from-teal-soft to-emerald-50 rounded-2xl border border-teal/20 px-5 py-3 flex items-center gap-4 flex-shrink-0">
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-teal">Share this link with your client to join:</p>
+            <p className="text-xs text-teal/70 font-mono truncate mt-0.5">{`${window.location.origin}/join/${session.room_name}`}</p>
+          </div>
+          <button onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/join/${session.room_name}`); setLinkCopied(true); setTimeout(() => setLinkCopied(false), 2000); }}
+            className="px-4 py-2 rounded-xl bg-teal text-white text-xs font-bold hover:shadow-teal transition flex-shrink-0">
+            {linkCopied ? "Copied!" : "Copy Link"}
+          </button>
+          <button onClick={() => { const link = `${window.location.origin}/join/${session.room_name}`; window.open(`mailto:${client?.email || ""}?subject=Join our coaching session&body=${encodeURIComponent("Join our session: " + link)}`); }}
+            className="px-4 py-2 rounded-xl bg-white border border-teal/30 text-teal text-xs font-bold hover:bg-teal-soft transition flex-shrink-0">
+            Email Client
+          </button>
+          <button onClick={() => setShowShareLink(false)} className="text-teal/40 hover:text-teal">x</button>
+        </div>
+      )}
 
       {/* Main Content: Video/Audio + Transcript Side by Side */}
       <div className="flex-1 flex gap-3 min-h-0">
