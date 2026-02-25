@@ -274,17 +274,16 @@ function EmbeddedDemo() {
 
 /* ═══ PRICING ═══ */
 const tiers = [
-  { name: "Free", price: "0", period: "forever", desc: "Try it with real clients", feats: ["2 sessions/month", "AI session summaries", "Basic action items", "1 client", "Email support"], cta: "Start Free", pop: false },
-  { name: "Starter", price: "49", period: "/mo", desc: "Drop the admin. Keep the magic.", feats: ["15 sessions/month", "Full AI outputs", "Auto follow-up emails", "Session Prep Briefs", "15 clients", "Email + chat support"], cta: "Get Started", pop: false },
-  { name: "Pro", price: "97", period: "/mo", desc: "The complete coaching OS.", feats: ["40 sessions/month", "Everything in Starter", "Client Progress Dashboard", "Branded Client Portal", "Transformation Reports", "Accountability Nudges", "Custom branding", "Priority support"], cta: "Go Pro", pop: true },
-  { name: "Agency", price: "197", period: "/mo", desc: "Scale to a coaching business.", feats: ["Unlimited sessions", "Everything in Pro", "Multi-coach (up to 5)", "Team dashboard", "Content Engine", "White-label option", "Dedicated success manager"], cta: "Scale Now", pop: false },
+  { name: "Starter", price: "49", period: "/mo", desc: "Drop the admin. Keep the magic.", feats: ["15 sessions/month", "AI session summaries", "Auto follow-up emails", "5 clients", "Session Prep Briefs", "Email support"], cta: "Start 14-Day Free Trial", pop: false },
+  { name: "Pro", price: "97", period: "/mo", desc: "The complete coaching OS.", feats: ["40 sessions/month", "Everything in Starter", "25 clients", "Client Progress Dashboard", "Branded Client Portal", "Transformation Reports", "Accountability Nudges", "Priority support"], cta: "Start 14-Day Free Trial", pop: true },
+  { name: "Scale", price: "197", period: "/mo", desc: "For coaching businesses.", feats: ["Unlimited sessions", "Everything in Pro", "Unlimited clients", "Multi-coach (up to 5)", "Team dashboard", "White-label option", "Dedicated success manager"], cta: "Start 14-Day Free Trial", pop: false },
 ];
 
 const faqs = [
   { q: "Won't the AI emails sound robotic?", a: "No. CoachForge builds emails from your actual session — the words your client used, the emotions they expressed, the commitments they made. Clients consistently rate them as warm and personal." },
   { q: "I'm not technical. Is this complicated?", a: "If you can click a button and have a conversation, you can use CoachForge. Client joins via a link. You hit End Session when you're done. No software to install, no configuration." },
   { q: "What about client confidentiality?", a: "End-to-end encrypted. Transcripts are private to your account. Client data is never used to train AI models. We're building toward HIPAA compliance." },
-  { q: "Can I try it before paying?", a: "Yes. The Free tier gives you 2 sessions per month, forever, with no credit card required." },
+  { q: "Can I try it before paying?", a: "Absolutely. Every plan starts with a 14-day free trial \u2014 no credit card required. Run real sessions with real clients and see the magic firsthand." },
   { q: "What if my client doesn't want to be recorded?", a: "Consent is built into the flow. When your client joins, they see a clear notice. They can opt out. Transparency is non-negotiable." },
   { q: "How is this different from Fathom or Otter?", a: "Those are general meeting tools. CoachForge is built specifically for coaching — action items with accountability, client portals, progress tracking, re-enrollment reports, prep briefs." },
 ];
@@ -318,7 +317,7 @@ export default function LandingPage() {
             <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-stone-500 hover:text-teal transition font-medium">{l}</a>
           ))}
           <Link href="/login" className="text-sm text-stone-500 hover:text-teal transition font-medium">Log in</Link>
-          <Link href="/signup" className="px-4 py-2 rounded-xl bg-teal text-white text-sm font-semibold hover:shadow-teal transition">Start Free</Link>
+          <Link href="/signup" className="px-4 py-2 rounded-xl bg-teal text-white text-sm font-semibold hover:shadow-teal transition">Start Free Trial</Link>
         </div>
       </nav>
 
@@ -349,19 +348,13 @@ export default function LandingPage() {
               View Pricing
             </a>
           </div>
-          <p className="text-xs text-stone-400 animate-fade-up" style={{ animationDelay: "0.5s" }}>Free forever · No credit card · 2 sessions/month</p>
+          <p className="text-xs text-stone-400 animate-fade-up" style={{ animationDelay: "0.5s" }}>14-day free trial · No credit card required · Cancel anytime</p>
         </div>
       </section>
 
       {/* LOGO BAR + STATS */}
       <Section className="bg-brand-bg-warm py-12 px-8">
         <div className="max-w-[900px] mx-auto">
-          <p className="text-center text-xs text-stone-400 font-medium tracking-wide uppercase mb-6">Trusted by coaches at</p>
-          <div className="flex justify-center gap-10 flex-wrap mb-10 opacity-30">
-            {["Tony Robbins Research", "BetterUp", "ICF Certified", "Noomii", "Coach.me", "Satori"].map(n => (
-              <span key={n} className="font-display text-base font-bold -tracking-wide whitespace-nowrap">{n}</span>
-            ))}
-          </div>
           <div className="flex justify-center gap-16 flex-wrap">
             <AnimStat end={2} suffix="+ hrs" label="saved per client/week" />
             <AnimStat end={3} prefix="< " suffix=" min" label="post-session delivery" />
@@ -566,9 +559,9 @@ export default function LandingPage() {
           <div className="text-center mb-12">
             <SectionLabel>Pricing</SectionLabel>
             <h2 className="font-display text-[clamp(26px,3.5vw,36px)] font-extrabold -tracking-wide">Simple, transparent pricing</h2>
-            <p className="text-stone-500 mt-2">Start free. Upgrade when CoachForge pays for itself — usually week one.</p>
+            <p className="text-stone-500 mt-2">Every plan includes a 14-day free trial. No credit card required.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tiers.map((t, i) => (
               <div key={i} className={`rounded-3xl p-7 flex flex-col relative transition-all hover:-translate-y-1 ${t.pop ? "bg-gradient-to-b from-teal to-teal-dark text-white shadow-xl hover:shadow-2xl scale-[1.01]" : "bg-white border border-stone-100 shadow-soft hover:shadow-medium"}`}>
                 {t.pop && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-terra to-terra-light text-white px-5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase shadow-lg">Most Popular</div>}
@@ -633,9 +626,9 @@ export default function LandingPage() {
           <h2 className="font-display text-[clamp(28px,4vw,42px)] font-extrabold leading-tight mb-4">Ready to get your<br />evenings back?</h2>
           <p className="text-lg opacity-75 leading-relaxed mb-9">Try one session. Hang up. Watch the AI do in 3 minutes what used to take you an hour. Then decide.</p>
           <Link href="/signup" className="inline-flex items-center gap-2 px-10 py-4 rounded-2xl bg-white text-teal text-lg font-semibold hover:shadow-2xl transition">
-            Start Free — No Credit Card <ArrowRight className="w-5 h-5" />
+            Start Your 14-Day Free Trial <ArrowRight className="w-5 h-5" />
           </Link>
-          <p className="text-xs opacity-40 mt-5">Free forever · 2 sessions/month · Upgrade anytime</p>
+          <p className="text-xs opacity-40 mt-5">No credit card required · Cancel anytime · Full access from day one</p>
         </div>
       </section>
 
